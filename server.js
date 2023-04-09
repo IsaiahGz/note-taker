@@ -12,6 +12,9 @@ app.use(express.urlencoded({ extended: true }));
 // Serve static content from public folder
 app.use(express.static('public'));
 
+// GET /notes takes users to notes.html
+app.get('/notes', (req, res) => res.sendFile(path.join(__dirname, '/public/notes.html')));
+
 // Wildcard route, send 404 and return landing page
 app.get('*', (req, res) => res.status(404).sendFile(path.join(__dirname, '/public/index.html')));
 
