@@ -12,4 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 // Serve static content from public folder
 app.use(express.static('public'));
 
+// Wildcard route, send 404 and return landing page
+app.get('*', (req, res) => res.status(404).sendFile(path.join(__dirname, '/public/index.html')));
+
 app.listen(PORT, () => console.log(`App listening at http://localhost:${PORT} 🚀`));
