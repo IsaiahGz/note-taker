@@ -2,7 +2,7 @@
 
 ## Description
 
-A simple note taker written using Node.js and Express. Users are able to create and delete notes which are then saved onto the server.
+A simple note taker written using Node.js and Express. Users are able to create and delete notes which are then saved onto the server. [App deployed here](https://quiet-beyond-08681.herokuapp.com/).
 
 ## Installation
 
