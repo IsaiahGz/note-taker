@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const { readDbJson } = require('./lib/utils');
+const { readDbJson, createNote } = require('./lib/utils');
 
 const PORT = process.env.port || 3001;
 
@@ -20,6 +20,14 @@ app.get('/api/notes', (req, res) => {
 	// Read db.json and return notes as JSON
 	readDbJson((data) => {
 		res.json(data);
+	});
+});
+
+app.post('/api/notes', (req, res) => {
+	// Get note object data from req.body and write to db. Return note with id attached
+	const newNote = req.body;
+	createNote(newNote, (createdNote) => {
+		res.json(createdNote);
 	});
 });
 
