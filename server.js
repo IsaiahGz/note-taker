@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const { readDbJson, createNote } = require('./lib/utils');
+const { readDbJson, createNote, deleteNote } = require('./lib/utils');
 
 const PORT = process.env.port || 3001;
 
@@ -29,6 +29,14 @@ app.post('/api/notes', (req, res) => {
 	createNote(newNote, (createdNote) => {
 		res.json(createdNote);
 	});
+});
+
+app.delete('/api/notes/:id', (req, res) => {
+	if (!req.params.id) res.sendStatus(400); // If no id, bad request (400)
+	else {
+		deleteNote(req.params.id);
+		res.sendStatus(200);
+	}
 });
 
 // Wildcard route, send 404 and return landing page
