@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const { readDbJson } = require('./lib/utils');
 
 const PORT = process.env.port || 3001;
 
@@ -14,6 +15,13 @@ app.use(express.static('public'));
 
 // GET /notes takes users to notes.html
 app.get('/notes', (req, res) => res.sendFile(path.join(__dirname, '/public/notes.html')));
+
+app.get('/api/notes', (req, res) => {
+	// Read db.json and return notes as JSON
+	readDbJson((data) => {
+		res.json(data);
+	});
+});
 
 // Wildcard route, send 404 and return landing page
 app.get('*', (req, res) => res.status(404).sendFile(path.join(__dirname, '/public/index.html')));
