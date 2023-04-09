@@ -27,7 +27,7 @@ app.post('/api/notes', (req, res) => {
 	// Get note object data from req.body and write to db. Return note with id attached
 	const newNote = req.body;
 	createNote(newNote, (createdNote) => {
-		res.json(createdNote);
+		res.status(201).json(createdNote);
 	});
 });
 
